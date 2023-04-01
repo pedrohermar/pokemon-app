@@ -1,0 +1,20 @@
+.options{
+    display: flex;
+    justify-content: right;
+
+    .filters-btn {
+        @apply border border-2 border-black rounded-lg p-1 mr-6 mt-3 cursor-pointer select-none relative; 
+    }
+
+    .search{
+        @apply border border-gray-300 rounded-lg focus:border-black p-1 mr-7 mt-3;  
+    }
+}
+
+.filters-area {
+    @apply absolute z-10 top-full mt-2 p-3 -right-14 w-28 h-auto bg-white rounded-lg border border-2 border-black;
+
+    .types{
+        @apply flex flex-col;
+    }
+}

@@ -1,0 +1,80 @@
+.modal {
+    @apply fixed flex justify-center items-center fixed z-10;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+
+    .modal-container {
+        @apply rounded-xl overflow-auto;
+            width: 23rem;
+            height: 30rem;
+            background-color: white;
+
+        .modal-pokemon{   
+
+            .modal-header {
+                @apply text-2xl font-semibold flex justify-between;
+                
+                border-bottom: 2px solid black;
+                padding: 2px 8px;
+
+                
+            }
+
+            .modal-body {
+                @apply m-2 flex flex-row;
+                
+                .sprites {
+
+                    img {
+                        width: 150px;
+                        height: 150px;
+                    }
+                }
+                
+                .stats {
+                    @apply text-xl pl-5 pt-5;
+
+                    h3 {
+                        @apply font-extrabold underline underline-offset-2 pl-2;
+                    }
+
+                    li {
+                        padding: 5px 0;
+                    }
+                }
+            }
+            
+            .modal-footer {
+                @apply flex flex-col justify-center items-center pt-3;
+
+                .types{
+                    @apply flex justify-center gap-6;
+                }
+
+                button {
+                    @apply border-2 border-black text-lg rounded-lg mt-5 p-1 font-semibold hover:bg-gray-200;
+                }
+            }
+        }
+
+        .modal-moves {
+
+            .moves-header {
+                @apply flex justify-around font-bold border-b-2 border-black text-xl py-1;
+            }
+
+            ul {
+                @apply flex flex-wrap justify-around gap-1 p-2;
+
+                li {
+                    @apply border border-black rounded-lg p-1;
+                }
+            }
+        }
+    }
+}
+
+.btn-close {
+    @apply rounded-full w-8 h-8 hover:bg-red-600 hover:text-white
+}

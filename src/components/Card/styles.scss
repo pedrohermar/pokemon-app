@@ -1,0 +1,25 @@
+.card {
+    @apply bg-white border shadow-sm rounded-lg overflow-hidden cursor-pointer relative z-0;
+
+    width: 150px;
+    height: 150px;
+
+    .card-header{
+        @apply pl-2 w-full;
+
+        border-bottom: 1px solid rgb(214, 214, 214);
+        span {
+            @apply font-bold
+        }
+    }
+
+    .card-body{
+        @apply pt-1 flex justify-center w-full h-24 flex items-center justify-center;
+
+    }
+
+    .card-footer {
+        @apply flex justify-around absolute bottom-0 w-full;
+    }
+}
+    

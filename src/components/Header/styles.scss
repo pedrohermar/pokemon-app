@@ -1,0 +1,10 @@
+.header {
+    .logo{
+        @apply bg-red-600 w-auto h-28 flex justify-center items-center;
+
+        img {
+            width: 217px;
+            height: 80px;
+        }
+    }    
+}
