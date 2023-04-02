@@ -1,7 +1,8 @@
 import axios from "axios";
 
+// Funciones de llamadas a API
 export const getPokemonsApi = () => {
-  return axios.get("https://pokeapi.co/api/v2/pokemon?limit=100&offset=0");
+  return axios.get("https://pokeapi.co/api/v2/pokemon?limit=500&offset=0");
 };
 
 export const getPokemonData = (url) => {
@@ -18,6 +19,49 @@ export const getPokemonGeneration = (pokemon) => {
   return axios(`https://pokeapi.co/api/v2/pokemon-species/${pokemon}`).then(
     (result) => result.data.generation.name
   );
+};
+
+// Función para filtar
+export const filtredPokemons = (
+  pokemonsArray,
+  typesFilter,
+  generationFilter
+) => {
+  if (typesFilter.length > 0 && generationFilter.length > 0) {
+    return pokemonsArray
+      .filter((pokemon) => {
+        return typesFilter.some((type) => {
+          return pokemon.types.some(
+            (pokemonType) => pokemonType.type.name === type
+          );
+        });
+      })
+      .filter((pokemon) => {
+        return generationFilter.some(
+          (generation) => generation == pokemon.generation
+        );
+      });
+  }
+
+  if (typesFilter.length > 0) {
+    return pokemonsArray.filter((pokemon) => {
+      return typesFilter.some((type) => {
+        return pokemon.types.some(
+          (pokemonType) => pokemonType.type.name === type
+        );
+      });
+    });
+  }
+
+  if (generationFilter.length > 0) {
+    return pokemonsArray.filter((pokemon) => {
+      return generationFilter.some(
+        (generation) => generation == pokemon.generation
+      );
+    });
+  }
+
+  return pokemonsArray;
 };
 
 export const capitalize = (word) => {

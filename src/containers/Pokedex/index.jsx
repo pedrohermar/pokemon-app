@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { getPokemonGeneration, getPokemonsApi } from "../../actions";
+import {
+  getPokemonGeneration,
+  getPokemonsApi,
+  filtredPokemons,
+} from "../../actions";
 import Header from "../../components/Header";
 import Filters from "../../components/Filters";
 import Card from "../../components/Card";
@@ -8,9 +12,9 @@ import "./styles.scss";
 
 function Pokedex() {
   const [pokemonsArray, setPokemonsArray] = useState([]);
-  const [pokemonsFiltred, setPokemonsFiltred] = useState([]);
   const [pokemonData, setPokemonData] = useState({});
   const [typesFilter, setTypesFilter] = useState([]);
+  const [generationFilter, setGenerationFilter] = useState([]);
   const [search, setSearch] = useState("");
   const [modal, setModal] = useState(false);
 
@@ -30,7 +34,7 @@ function Pokedex() {
       );
       // Llamada por cada pokemon a diferente endpoint para obtener el número de generación de cada uno, y añadirlo al objeto.
       pokemonsInfo.forEach((pokemon, index) => {
-        getPokemonGeneration(pokemon.name).then(
+        getPokemonGeneration(pokemon.id).then(
           (generation) => (pokemonsInfo[index].generation = generation)
         );
       });
@@ -40,18 +44,6 @@ function Pokedex() {
     };
     fetchPokemons();
   }, []);
-
-  useEffect(() => {
-    const filtrarPokemons = pokemonsArray.filter((pokemon) => {
-      return typesFilter.some((type) => {
-        return pokemon.types.some(
-          (pokemonType) => pokemonType.type.name === type
-        );
-      });
-    });
-
-    setPokemonsFiltred(filtrarPokemons);
-  }, [typesFilter]);
 
   const viewModal = (data) => {
     setModal(!modal);
@@ -66,6 +58,16 @@ function Pokedex() {
     }
   };
 
+  const handleGenerationSelect = (generationSelect) => {
+    if (generationFilter.includes(generationSelect)) {
+      setGenerationFilter(
+        generationFilter.filter((generation) => generation != generationSelect)
+      );
+    } else {
+      setGenerationFilter([...generationFilter, generationSelect]);
+    }
+  };
+
   return (
     <>
       {modal && <Modal fn={viewModal} data={pokemonData} />}
@@ -73,32 +75,22 @@ function Pokedex() {
       <Filters
         search={setSearch}
         handleTypesSelect={handleTypesSelect}
+        handleGenerationSelect={handleGenerationSelect}
         typesFilter={typesFilter}
+        generationFilter={generationFilter}
       />
       <div className="cards-container">
-        {typesFilter.length > 0
-          ? pokemonsFiltred
-              .filter((element) => element.name.includes(search.toLowerCase()))
-              .map((pokemon) => {
-                return (
-                  <Card
-                    pokemon={pokemon}
-                    key={pokemon.name}
-                    viewModal={viewModal}
-                  />
-                );
-              })
-          : pokemonsArray
-              .filter((element) => element.name.includes(search.toLowerCase()))
-              .map((pokemon) => {
-                return (
-                  <Card
-                    pokemon={pokemon}
-                    key={pokemon.name}
-                    viewModal={viewModal}
-                  />
-                );
-              })}
+        {filtredPokemons(pokemonsArray, typesFilter, generationFilter)
+          .filter((element) => element.name.includes(search.toLowerCase()))
+          .map((pokemon) => {
+            return (
+              <Card
+                pokemon={pokemon}
+                key={pokemon.name}
+                viewModal={viewModal}
+              />
+            );
+          })}
       </div>
     </>
   );
