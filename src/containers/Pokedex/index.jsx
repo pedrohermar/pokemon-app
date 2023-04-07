@@ -3,6 +3,7 @@ import {
   getPokemonGeneration,
   getPokemonsApi,
   filtredPokemons,
+  addGeneration,
 } from "../../actions";
 import Header from "../../components/Header";
 import Filters from "../../components/Filters";
@@ -24,6 +25,7 @@ function Pokedex() {
       const pokemonList = await getPokemonsApi().then(
         (res) => res.data.results
       );
+
       // Llamada iterada por cada Pokemon para devolver sus datos
       const pokemonsInfo = await Promise.all(
         pokemonList.map(async (pokemon) => {
@@ -32,14 +34,11 @@ function Pokedex() {
           return data;
         })
       );
-      // Llamada por cada pokemon a diferente endpoint para obtener el número de generación de cada uno, y añadirlo al objeto.
-      pokemonsInfo.forEach((pokemon, index) => {
-        getPokemonGeneration(pokemon.id).then(
-          (generation) => (pokemonsInfo[index].generation = generation)
-        );
-      });
 
-      // Se almacena en el estado el array con los pokemosn con sus datos y la generación
+      // Se añade la generación a cada pokemon
+      addGeneration(pokemonsInfo);
+
+      // Se almacena en el estado el array de los pokemons con sus datos y la generación
       setPokemonsArray(pokemonsInfo);
     };
     fetchPokemons();

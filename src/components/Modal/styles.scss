@@ -7,74 +7,77 @@
     .modal-container {
         @apply rounded-xl overflow-auto;
             width: 23rem;
-            height: 30rem;
+            height: 36rem;  
             background-color: white;
 
-        .modal-pokemon{   
+            .modal-image-area{
+                @apply h-60 rounded-b-2xl;
 
-            .modal-header {
-                @apply text-2xl font-semibold flex justify-between;
-                
-                border-bottom: 2px solid black;
-                padding: 2px 8px;
+                .modal-header {
+                    @apply flex justify-between px-2 pt-1 text-xl font-bold;
 
-                
-            }
-
-            .modal-body {
-                @apply m-2 flex flex-row;
-                
+                    .btn-close {
+                        @apply rounded-full w-6 h-6
+                    }   
+                }
+           
                 .sprites {
+                    @apply flex flex-col items-center justify-center;
+
+                    .btn-change-img{
+                        @apply border border-gray-600 flex gap-4 rounded-xl;
+
+                        button {
+                            @apply py-0.5 px-2 rounded-xl;
+
+                            &.selected {
+                                background-color: rgba(95, 88, 88, 0.507);
+                            }
+                        }
+
+                    }
 
                     img {
-                        width: 150px;
-                        height: 150px;
+                        width: 180px;
+                        height: 180px;
+                    }
+                }
+            }
+
+            .modal-stats-area {
+                @apply flex flex-col justify-center;
+
+                h1 {
+                    @apply mt-1 text-center text-2xl font-semibold;
+                }
+
+                .types {
+                     @apply flex justify-center gap-2;
+                }
+
+                h2 {
+                    @apply text-lg font-semibold text-center mt-2;
+                }
+
+                .physic-stats{
+                    @apply flex justify-center gap-x-12 mt-3 text-center;
+
+                    h3{
+                        @apply font-bold text-lg text-center
+                    }
+
+                    label{
+                        @apply font-light text-sm m-0 p-0;
                     }
                 }
                 
-                .stats {
-                    @apply text-xl pl-5 pt-5;
+                .stats-table {
+                    @apply text-xl p-2 mx-5 bg-gray-300 rounded-2xl flex flex-col justify-center;
 
-                    h3 {
-                        @apply font-extrabold underline underline-offset-2 pl-2;
-                    }
-
-                    li {
-                        padding: 5px 0;
+                    label {
+                        @apply text-sm;
                     }
                 }
             }
-            
-            .modal-footer {
-                @apply flex flex-col justify-center items-center pt-3;
-
-                .types{
-                    @apply flex justify-center gap-6;
-                }
-
-                button {
-                    @apply border-2 border-black text-lg rounded-lg mt-5 p-1 font-semibold hover:bg-gray-200;
-                }
-            }
-        }
-
-        .modal-moves {
-
-            .moves-header {
-                @apply flex justify-around font-bold border-b-2 border-black text-xl py-1;
-            }
-
-            ul {
-                @apply flex flex-wrap justify-around gap-1 p-2;
-
-                li {
-                    @apply border border-black rounded-lg p-1;
-                }
-            }
-        }
     }
-}
-
-.btn-close {
-    @apply rounded-full w-8 h-8 hover:bg-red-600 hover:text-white
 }

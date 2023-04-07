@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Funciones de llamadas a API
 export const getPokemonsApi = () => {
-  return axios.get("https://pokeapi.co/api/v2/pokemon?limit=500&offset=0");
+  return axios.get("https://pokeapi.co/api/v2/pokemon?limit=649&offset=0");
 };
 
 export const getPokemonData = (url) => {
@@ -64,8 +64,27 @@ export const filtredPokemons = (
   return pokemonsArray;
 };
 
-export const capitalize = (word) => {
-  return word[0].toUpperCase() + word.slice(1);
+export const addGeneration = (pokemonsInfo) => {
+  pokemonsInfo.forEach((pokemon) => {
+    const { id } = pokemon;
+
+    switch (true) {
+      case id < 152:
+        pokemon.generation = "generation-i";
+        break;
+      case id < 252:
+        pokemon.generation = "generation-ii";
+        break;
+      case id < 387:
+        pokemon.generation = "generation-iii";
+        break;
+      case id < 494:
+        pokemon.generation = "generation-iv";
+        break;
+      default:
+        pokemon.generation = "generation-v";
+    }
+  });
 };
 
 export const colorType = (type) => {
@@ -130,4 +149,8 @@ export const colorType = (type) => {
     default:
       break;
   }
+};
+
+export const capitalize = (word) => {
+  return word[0].toUpperCase() + word.slice(1);
 };
