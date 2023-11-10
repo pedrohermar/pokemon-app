@@ -3,11 +3,6 @@ import { colorType } from "../../actions";
 import "./styles.scss";
 import { capitalize } from "../../actions";
 
-/* <img
-              src={data.sprites.other["official-artwork"].front_shiny}
-              alt="Default"
-            ></img> */
-
 const Modal = ({ fn, data }) => {
   const [shiny, setShiny] = useState(false);
 
@@ -81,9 +76,9 @@ const Modal = ({ fn, data }) => {
                 <div className="flex justify-between my-1" key={stat.stat.name}>
                   <label>{stat.stat.name.substr(0, 11).toUpperCase()}</label>
                   <div>
-                    <div class="w-56 bg-gray-200 rounded-full">
+                    <div className="w-56 bg-gray-200 rounded-full">
                       <div
-                        class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
+                        className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
                         style={{ width: `${(stat.base_stat / 255) * 100}%` }}
                       >
                         {stat.base_stat}
@@ -92,12 +87,6 @@ const Modal = ({ fn, data }) => {
                   </div>
                 </div>
               ))}
-              {/* {data.stats.map((stat) => (
-                <li key={stat.stat.name}>
-                  <span className="font-extrabold">{stat.base_stat} </span>
-                  {stat.stat.name.substr(0, 11).toUpperCase()}
-                </li>
-              ))} */}
             </ul>
           </div>
         </div>
