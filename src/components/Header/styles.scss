@@ -1,6 +1,8 @@
 .header {
+    @apply fixed w-full top-0 z-10;
+
     .logo{
-        @apply bg-red-600 w-auto h-28 flex justify-center items-center;
+        @apply bg-red-600 w-auto h-32 flex justify-center items-center;
 
         img {
             width: 217px;

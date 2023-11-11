@@ -43,7 +43,7 @@ const useFetch = (
       const documentHeight = document.documentElement.scrollHeight;
 
       // Verificar si hemos llegado al final de la página
-      if (scrollPosition >= documentHeight - threshold) {
+      if (scrollPosition >= documentHeight) {
         // Se ejecuta al llegar al final de la página
         getPokemonsData(currentData.next);
       }

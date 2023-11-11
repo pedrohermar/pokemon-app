@@ -1,7 +1,8 @@
 .modal {
-    @apply fixed flex justify-center items-center fixed z-10;
+    @apply fixed flex justify-center items-center z-20 top-0;
     width: 100vw;
     height: 100vh;
+    margin: 0;
     background-color: rgba(0, 0, 0, 0.85);
 
     .modal-container {

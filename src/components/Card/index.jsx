@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getPokemonData, capitalize, colorType } from "../../actions";
+import { capitalize, colorType } from "../../actions";
 import "./styles.scss";
 
 const Card = ({ pokemon, viewModal }) => {

@@ -2,11 +2,11 @@ import "./styles.scss";
 
 const Header = () => {
   return (
-    <div className="header">
-      <section className="logo">
+    <header className="header">
+      <picture className="logo">
         <img src="/pokemon-logo.svg" />
-      </section>
-    </div>
+      </picture>
+    </header>
   );
 };
 

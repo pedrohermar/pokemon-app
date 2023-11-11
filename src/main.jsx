@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Pokedex from "./containers/Pokedex";
 import "./index.scss";
+import PokemonRouter from "./router/PokemonRouter";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Pokedex />
+    <PokemonRouter />
   </React.StrictMode>
 );

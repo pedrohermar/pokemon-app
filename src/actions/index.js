@@ -1,26 +1,3 @@
-import axios from "axios";
-
-// Funciones de llamadas a API
-export const getPokemonsApi = () => {
-  return axios.get("https://pokeapi.co/api/v2/pokemon?limit=649&offset=0");
-};
-
-export const getPokemonData = (url) => {
-  return axios.get(url);
-};
-
-export const getPokemonTypes = () => {
-  return axios("https://pokeapi.co/api/v2/type").then(
-    (result) => result.data.results
-  );
-};
-
-export const getPokemonGeneration = (pokemon) => {
-  return axios(`https://pokeapi.co/api/v2/pokemon-species/${pokemon}`).then(
-    (result) => result.data.generation.name
-  );
-};
-
 // Función para filtar
 export const filtredPokemons = (
   pokemonsArray,
