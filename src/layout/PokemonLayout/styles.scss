@@ -1,3 +1,7 @@
 main {
-    @apply flex flex-wrap gap-6 mx-6 mt-36 justify-around;
+    @apply flex flex-col items-center;
+    
+    ul{
+        @apply flex flex-wrap gap-6 mx-6 mt-36 justify-around;
+    }
 }

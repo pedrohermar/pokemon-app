@@ -1,51 +1,76 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useFetch } from "../../hooks/useFetch";
 import { capitalize, colorType } from "../../actions";
 import "./styles.scss";
 
-const Card = ({ pokemon, viewModal }) => {
+const Card = ({ name, viewModal, pokemonURL }) => {
+  const { data, loading, error, getApiData } = useFetch(
+    `https://pokeapi.co/api/v2/pokemon/${name}`
+  );
   const [hover, setHover] = useState(false);
 
+  useEffect(() => {
+    if (error) {
+      fetch(pokemonURL)
+        .then((result) => result.json())
+        .then((resultJSON) =>
+          getApiData(`https://pokeapi.co/api/v2/pokemon/${resultJSON.id}`)
+        );
+    }
+  }, [error]);
+
   return (
-    <div
+    <li
       className="card"
-      onClick={() => viewModal(pokemon)}
+      onClick={() => viewModal(data)}
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
+      style={{ order: data?.id }}
     >
-      <header className="card-header">
-        <label>
-          <span>#{pokemon.id} </span>
-          {capitalize(pokemon.name)}
-        </label>
-      </header>
-      <div className="card-body">
-        {pokemon.sprites && (
-          <img
-            src={
-              hover
-                ? pokemon.sprites.versions["generation-v"]["black-white"]
-                    .animated.front_default
-                : pokemon.sprites.front_default
-            }
-            alt="Pokemon image"
-          />
-        )}
-      </div>
-      <div className="card-footer">
-        {pokemon.types &&
-          pokemon.types.map((type) => {
-            return (
-              <label
-                className={colorType(type.type.name)}
-                style={{ width: "100%", textAlign: "center" }}
-                key={type.type.name}
-              >
-                {type.type.name}
+      {!loading ? (
+        !error ? (
+          <>
+            <header className="card-header">
+              <label>
+                <span>#{data.id} </span>
+                {capitalize(data.name)}
               </label>
-            );
-          })}
-      </div>
-    </div>
+            </header>
+            <div className="card-body">
+              {data.sprites && (
+                <img
+                  src={
+                    hover
+                      ? data.sprites.versions["generation-v"]["black-white"]
+                          .animated.front_default
+                      : data.sprites.front_default
+                  }
+                  alt="Pokemon image"
+                />
+              )}
+            </div>
+            <div className="card-footer">
+              {data.types &&
+                data.types.map((type) => {
+                  return (
+                    <label
+                      className={colorType(type.type.name)}
+                      style={{ width: "100%", textAlign: "center" }}
+                      key={type.type.name}
+                    >
+                      {type.type.name}
+                    </label>
+                  );
+                })}
+            </div>
+          </>
+        ) : (
+          <h1>Pokemon not found</h1>
+        )
+      ) : (
+        <h1>Loading data</h1>
+      )}
+    </li>
   );
 };
 
