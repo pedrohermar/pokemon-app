@@ -9,7 +9,7 @@ function PokedexPage() {
   const [url, setUrl] = useState(
     "https://pokeapi.co/api/v2/pokemon?limit=100&offset=0"
   );
-  const { data } = useFetch(url);
+  const { data, loading } = useFetch(url);
 
   const [pokemonList, setPokemonList] = useState([]);
   const [pokemonData, setPokemonData] = useState({});
@@ -19,13 +19,32 @@ function PokedexPage() {
     if (data) setPokemonList([...pokemonList, ...data.results]);
   }, [data]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      // Obtener la posición actual de desplazamiento
+      const scrollPosition = window.innerHeight + window.scrollY;
+
+      // Obtener la altura total del documento
+      const documentHeight = document.documentElement.scrollHeight;
+
+      // Cambiar la URL de consulta a la API si se ha llegado al final de la página
+      if (scrollPosition >= documentHeight) {
+        setUrl(data?.next);
+      }
+    };
+
+    // Agregar el evento de desplazamiento al montar el componente
+    window.addEventListener("scroll", handleScroll);
+
+    // Limpiar el evento al desmontar el componente para evitar pérdidas de memoria
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [pokemonList]);
+
   const viewModal = (data) => {
     setModal(!modal);
     setPokemonData(data);
-  };
-
-  const handleClick = () => {
-    setUrl(data.next);
   };
 
   return (
@@ -42,15 +61,6 @@ function PokedexPage() {
             />
           ))}
       </ul>
-
-      {pokemonList.length < data?.count && (
-        <button
-          className="h-11 w-[96%] my-6 bg-gray-300 border border-gray-400 rounded-lg"
-          onClick={handleClick}
-        >
-          View More
-        </button>
-      )}
     </>
   );
 }

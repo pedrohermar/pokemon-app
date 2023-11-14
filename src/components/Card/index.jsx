@@ -3,7 +3,7 @@ import { useFetch } from "../../hooks/useFetch";
 import { capitalize, colorType } from "../../actions";
 import "./styles.scss";
 
-const Card = ({ name, viewModal, pokemonURL }) => {
+const Card = ({ name, viewModal, pokemonURL, orderList }) => {
   const { data, loading, error, getApiData } = useFetch(
     `https://pokeapi.co/api/v2/pokemon/${name}`
   );
@@ -25,7 +25,7 @@ const Card = ({ name, viewModal, pokemonURL }) => {
       onClick={() => viewModal(data)}
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
-      style={{ order: data?.id }}
+      style={{ order: orderList ? data?.id : "inherit" }}
     >
       {!loading ? (
         !error ? (

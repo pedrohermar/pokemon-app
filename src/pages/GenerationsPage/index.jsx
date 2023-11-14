@@ -16,6 +16,7 @@ const GenerationsPage = () => {
             name={pokemon.name}
             key={pokemon.name}
             pokemonURL={pokemon.url}
+            orderList={true}
           />
         ))}
     </ul>
