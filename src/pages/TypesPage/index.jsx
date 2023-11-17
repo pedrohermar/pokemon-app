@@ -9,8 +9,8 @@ const TypesPage = () => {
   return (
     <ul className="pokemon-list">
       {!loading &&
-        data.pokemon.map((item) => (
-          <Card name={item.pokemon.name} key={item.pokemon.name} />
+        data.pokemon.map(({ pokemon }) => (
+          <Card name={pokemon.name} key={pokemon.name} />
         ))}
     </ul>
   );

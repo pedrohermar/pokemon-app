@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 import Card from "../../components/Card";
-import Modal from "../../components/Modal";
 import "./styles.scss";
 import { useFetch } from "../../hooks/useFetch";
 
@@ -10,10 +9,7 @@ function PokedexPage() {
     "https://pokeapi.co/api/v2/pokemon?limit=100&offset=0"
   );
   const { data, loading } = useFetch(url);
-
   const [pokemonList, setPokemonList] = useState([]);
-  const [pokemonData, setPokemonData] = useState({});
-  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     if (data) setPokemonList([...pokemonList, ...data.results]);
@@ -42,23 +38,12 @@ function PokedexPage() {
     };
   }, [pokemonList]);
 
-  const viewModal = (data) => {
-    setModal(!modal);
-    setPokemonData(data);
-  };
-
   return (
     <>
-      {modal && <Modal fn={viewModal} data={pokemonData} />}
-
       <ul className="pokemon-list">
         {pokemonList.length > 0 &&
           pokemonList.map((pokemon) => (
-            <Card
-              name={pokemon.name}
-              key={pokemon.name}
-              viewModal={viewModal}
-            />
+            <Card name={pokemon.name} key={pokemon.name} />
           ))}
       </ul>
     </>

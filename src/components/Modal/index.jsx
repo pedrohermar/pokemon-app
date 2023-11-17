@@ -14,7 +14,7 @@ const Modal = ({ fn, data }) => {
         >
           <div className="modal-header">
             <label>#{data.id}</label>
-            <button className="btn-close" onClick={fn}>
+            <button className="btn-close" onClick={() => fn(false)}>
               X
             </button>
           </div>
@@ -22,13 +22,13 @@ const Modal = ({ fn, data }) => {
           <div className="sprites">
             <div className="btn-change-img">
               <button
-                className={!shiny && "selected"}
+                className={!shiny ? "selected" : ""}
                 onClick={() => setShiny(false)}
               >
                 normal
               </button>
               <button
-                className={shiny && "selected"}
+                className={shiny ? "selected" : ""}
                 onClick={() => setShiny(true)}
               >
                 shiny
