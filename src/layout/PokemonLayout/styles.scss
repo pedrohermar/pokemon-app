@@ -1,7 +1,7 @@
 main {
-    @apply flex flex-col items-center;
+    @apply flex flex-col items-center mx-6 mt-36;
     
     .pokemon-list{
-        @apply flex flex-wrap gap-6 mx-6 mt-36 justify-around;
+        @apply flex flex-wrap gap-6 justify-around;
     }
 }

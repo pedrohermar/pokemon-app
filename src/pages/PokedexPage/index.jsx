@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 import Card from "../../components/Card";
-import "./styles.scss";
 import { useFetch } from "../../hooks/useFetch";
 
 function PokedexPage() {
