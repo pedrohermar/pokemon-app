@@ -1,3 +1,4 @@
+import NavBar from "../NavBar";
 import "./styles.scss";
 
 const Header = () => {
@@ -6,6 +7,8 @@ const Header = () => {
       <picture className="logo">
         <img src="/pokemon-logo.svg" />
       </picture>
+
+      <NavBar />
     </header>
   );
 };

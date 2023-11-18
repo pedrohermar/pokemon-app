@@ -1,0 +1,19 @@
+.nav-bar {
+    @apply px-4 mb-2 w-full flex justify-end;
+
+    .search {
+        @apply relative;
+
+        .search-icon {
+            @apply absolute right-1.5 top-2;
+        }
+
+        input {
+            @apply p-2 rounded-xl;
+
+            &:focus ~ .search-icon path {
+                fill: black
+            }
+        }
+    }
+}

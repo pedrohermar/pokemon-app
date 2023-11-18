@@ -17,7 +17,7 @@ const SearchPage = () => {
       );
       setSearchResults(results);
     }
-  }, [data]);
+  }, [data, query]);
 
   return (
     <>
