@@ -1,19 +1,36 @@
 .nav-bar {
-    @apply px-4 mb-2 w-full flex justify-end;
+    @apply w-full flex justify-end pb-4 gap-16;
 
-    .search {
+    .nav-list {
+        @apply flex gap-10 text-gray-100 font-bold text-lg p-1.5;
+
+        .nav-item {
+            @apply w-full text-center cursor-pointer uppercase relative;
+        }
+    }
+
+    .search-form {
         @apply relative;
 
+        .search-input {
+            @apply pl-9 w-52;
+        }
+
         .search-icon {
-            @apply absolute right-1.5 top-2;
+            @apply absolute left-1.5 top-2;
         }
 
         input {
             @apply p-2 rounded-xl;
 
-            &:focus ~ .search-icon path {
-                fill: black
+            &:focus {
+                @apply outline-red-700;
+
+                & ~ .search-icon path {
+                   @apply fill-red-700;
+               }
             }
+            
         }
     }
 }

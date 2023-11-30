@@ -1,12 +1,9 @@
 .header {
-    @apply fixed w-full top-0 z-10  bg-red-600;
+    @apply w-full h-24 top-0 sticky bg-red-600 flex px-10 items-end z-20;
 
-    .logo{
-        @apply w-auto h-32 flex justify-center items-center;
-
-        img {
-            width: 217px;
-            height: 80px;
-        }
-    }    
+    .logo {
+        width: 240px;
+        height: 80px;
+        margin: auto;
+    }
 }

@@ -1,0 +1,33 @@
+.nav-menu {
+    @apply min-w-[160px] bg-red-400 overflow-hidden shadow-md shadow-gray-400 absolute left-0 top-[50px] rounded-md;
+
+    animation: showNavMenu .5s ease;
+
+        .nav-menu-item {
+            @apply w-full text-white text-sm py-3 cursor-pointer relative;
+
+            &::before {
+                @apply absolute top-0 left-0 w-0 h-full bg-red-600;
+                
+                content: "";
+                transition: width 0.1s ease;
+              }
+
+            &:hover::before {
+                @apply left-0 w-full;
+            }
+        }
+
+        .item-text{
+            @apply z-10 relative;
+        }
+}
+
+@keyframes showNavMenu {
+    from {
+        max-height: 0;
+    }
+    to {
+        max-height: 500px;
+    }
+}
