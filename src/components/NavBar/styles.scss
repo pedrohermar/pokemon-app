@@ -5,7 +5,7 @@
         @apply flex gap-10 text-gray-100 font-bold text-lg p-1.5;
 
         .nav-item {
-            @apply w-full text-center cursor-pointer uppercase relative;
+            @apply w-full text-center cursor-pointer uppercase relative hover:text-red-300;
         }
     }
 

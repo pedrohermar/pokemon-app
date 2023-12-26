@@ -3,6 +3,7 @@ import { useFetch } from "../../hooks/useFetch";
 import { capitalize, colorType } from "../../actions";
 import "./styles.scss";
 import Modal from "../Modal";
+import CardSpinner from "../CardSpinner";
 
 const Card = ({ name, pokemonURL, orderList }) => {
   const { data, loading, error, getApiData } = useFetch(
@@ -36,10 +37,8 @@ const Card = ({ name, pokemonURL, orderList }) => {
           !error ? (
             <>
               <header className="card-header">
-                <label>
-                  <span>#{data.id} </span>
-                  {capitalize(data.name)}
-                </label>
+                <span>#{data.id} </span>
+                {capitalize(data.name)}
               </header>
               <div className="card-body">
                 {data.sprites && (
@@ -73,7 +72,7 @@ const Card = ({ name, pokemonURL, orderList }) => {
             <h1>Pokemon not found</h1>
           )
         ) : (
-          <h1>Loading data</h1>
+          <CardSpinner />
         )}
       </li>
     </>
