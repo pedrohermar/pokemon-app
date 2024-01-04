@@ -2,6 +2,7 @@ import { useState } from "react";
 import { colorType } from "../../actions";
 import "./styles.scss";
 import { capitalize } from "../../actions";
+import { CloseIcon } from "../../icons/CloseIcon";
 
 const Modal = ({ fn, data }) => {
   const [shiny, setShiny] = useState(false);
@@ -15,7 +16,7 @@ const Modal = ({ fn, data }) => {
           <div className="modal-header">
             <label>#{data.id}</label>
             <button className="btn-close" onClick={() => fn(false)}>
-              X
+              <CloseIcon />
             </button>
           </div>
 

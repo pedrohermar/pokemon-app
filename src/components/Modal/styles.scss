@@ -6,7 +6,7 @@
     background-color: rgba(0, 0, 0, 0.85);
 
     .modal-container {
-        @apply rounded-xl overflow-auto;
+        @apply rounded-xl overflow-hidden;
             width: 23rem;
             height: 36rem;  
             background-color: white;
@@ -18,7 +18,11 @@
                     @apply flex justify-between px-2 pt-1 text-xl font-bold;
 
                     .btn-close {
-                        @apply rounded-full w-6 h-6
+                        @apply p-1;
+
+                        &:hover > svg > path {
+                            @apply fill-red-800 transition-all;
+                        }
                     }   
                 }
            
